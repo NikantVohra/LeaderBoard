@@ -15,6 +15,10 @@
 		0505928E1CFC77A700F4E6C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0505928C1CFC77A700F4E6C9 /* LaunchScreen.storyboard */; };
 		050592991CFC77A700F4E6C9 /* LeaderboardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 050592981CFC77A700F4E6C9 /* LeaderboardTests.m */; };
 		050592A41CFC77A700F4E6C9 /* LeaderboardUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 050592A31CFC77A700F4E6C9 /* LeaderboardUITests.m */; };
+		050592B31CFC7C4E00F4E6C9 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 050592B11CFC7C4E00F4E6C9 /* DataModel.xcdatamodeld */; };
+		050592B81CFC7ED300F4E6C9 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 050592B51CFC7ED300F4E6C9 /* User+CoreDataProperties.m */; };
+		050592B91CFC7ED300F4E6C9 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 050592B71CFC7ED300F4E6C9 /* User.m */; };
+		050592BC1CFC91BF00F4E6C9 /* LeaderboardService.m in Sources */ = {isa = PBXBuildFile; fileRef = 050592BB1CFC91BF00F4E6C9 /* LeaderboardService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,13 @@
 		0505929F1CFC77A700F4E6C9 /* LeaderboardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeaderboardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		050592A31CFC77A700F4E6C9 /* LeaderboardUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeaderboardUITests.m; sourceTree = "<group>"; };
 		050592A51CFC77A700F4E6C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		050592B21CFC7C4E00F4E6C9 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		050592B41CFC7ED300F4E6C9 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
+		050592B51CFC7ED300F4E6C9 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
+		050592B61CFC7ED300F4E6C9 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		050592B71CFC7ED300F4E6C9 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		050592BA1CFC91BF00F4E6C9 /* LeaderboardService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderboardService.h; sourceTree = "<group>"; };
+		050592BB1CFC91BF00F4E6C9 /* LeaderboardService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderboardService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +112,17 @@
 		0505927D1CFC77A700F4E6C9 /* Leaderboard */ = {
 			isa = PBXGroup;
 			children = (
+				050592B11CFC7C4E00F4E6C9 /* DataModel.xcdatamodeld */,
+				050592B41CFC7ED300F4E6C9 /* User+CoreDataProperties.h */,
+				050592B51CFC7ED300F4E6C9 /* User+CoreDataProperties.m */,
+				050592B61CFC7ED300F4E6C9 /* User.h */,
+				050592B71CFC7ED300F4E6C9 /* User.m */,
 				050592811CFC77A700F4E6C9 /* AppDelegate.h */,
 				050592821CFC77A700F4E6C9 /* AppDelegate.m */,
 				050592841CFC77A700F4E6C9 /* ViewController.h */,
 				050592851CFC77A700F4E6C9 /* ViewController.m */,
+				050592BA1CFC91BF00F4E6C9 /* LeaderboardService.h */,
+				050592BB1CFC91BF00F4E6C9 /* LeaderboardService.m */,
 				050592871CFC77A700F4E6C9 /* Main.storyboard */,
 				0505928A1CFC77A700F4E6C9 /* Assets.xcassets */,
 				0505928C1CFC77A700F4E6C9 /* LaunchScreen.storyboard */,
@@ -270,7 +288,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				050592B81CFC7ED300F4E6C9 /* User+CoreDataProperties.m in Sources */,
 				050592861CFC77A700F4E6C9 /* ViewController.m in Sources */,
+				050592BC1CFC91BF00F4E6C9 /* LeaderboardService.m in Sources */,
+				050592B91CFC7ED300F4E6C9 /* User.m in Sources */,
+				050592B31CFC7C4E00F4E6C9 /* DataModel.xcdatamodeld in Sources */,
 				050592831CFC77A700F4E6C9 /* AppDelegate.m in Sources */,
 				050592801CFC77A700F4E6C9 /* main.m in Sources */,
 			);
@@ -516,6 +538,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		050592B11CFC7C4E00F4E6C9 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				050592B21CFC7C4E00F4E6C9 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 050592B21CFC7C4E00F4E6C9 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 050592731CFC77A700F4E6C9 /* Project object */;
 }
