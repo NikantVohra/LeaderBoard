@@ -11,6 +11,7 @@
 #import "OverallLeaderboardUser.h"
 #import "AppDelegate.h"
 #import "LeaderboardService.h"
+#import "CoreDataHelper.h"
 
 @interface OverallLeaderboardViewController () <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -23,7 +24,6 @@
 
 @implementation OverallLeaderboardViewController
 
-static int fetchLimit = 10;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,8 +32,7 @@ static int fetchLimit = 10;
     [self addRefreshControl];
     self.leaderboardService = [[LeaderboardService alloc] init];
     NSError *error;
-    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    self.managedObjectContext = delegate.managedObjectContext;
+    self.managedObjectContext = [[CoreDataHelper sharedInstance] managedObjectContext];
 
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -44,7 +43,6 @@ static int fetchLimit = 10;
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self fetchUsers];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,31 +59,34 @@ static int fetchLimit = 10;
 
 -(void)fetchUsers{
     [self.leaderboardService fetchTopLeaderboardUsers:^(NSArray *users, NSError *error) {
-        for(NSDictionary *userDict in users) {
-            NSManagedObjectContext *context = [self managedObjectContext];
-            NSString *userId =  [userDict objectForKey:@"id"];
-            NSFetchRequest *request = [[NSFetchRequest alloc] init];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:@"OverallLeaderboardUser" inManagedObjectContext:self.managedObjectContext];
-            [request setEntity:entity];
-            [request setPredicate:[NSPredicate predicateWithFormat:@"identifier == %@", userId]];
-            NSArray *results = [self.managedObjectContext executeFetchRequest:request error:nil];
-            OverallLeaderboardUser *user;
-            if(results.count > 0) {
-                user = [results objectAtIndex:0];
+        if(!error) {
+            [[CoreDataHelper sharedInstance] deleteAllInstancesOfEntity:@"OverallLeaderboardUser"];
+            for(NSDictionary *userDict in users) {
+                NSManagedObjectContext *context = [self managedObjectContext];
+                NSString *userId =  [userDict objectForKey:@"id"];
+                NSFetchRequest *request = [[NSFetchRequest alloc] init];
+                NSEntityDescription *entity = [NSEntityDescription entityForName:@"OverallLeaderboardUser" inManagedObjectContext:self.managedObjectContext];
+                [request setEntity:entity];
+                [request setPredicate:[NSPredicate predicateWithFormat:@"identifier == %@", userId]];
+                NSArray *results = [self.managedObjectContext executeFetchRequest:request error:nil];
+                OverallLeaderboardUser *user;
+                if(results.count > 0) {
+                    user = [results objectAtIndex:0];
+                }
+                else {
+                    user = [NSEntityDescription
+                                  insertNewObjectForEntityForName:@"OverallLeaderboardUser"
+                                  inManagedObjectContext:context];
+                }
+                user.name = [userDict objectForKey:@"name"];
+                user.score = [userDict objectForKey:@"score"];
+                user.identifier = [userDict objectForKey:@"id"];
+                NSError *error;
+                if (![context save:&error]) {
+                    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                }
+                
             }
-            else {
-                user = [NSEntityDescription
-                              insertNewObjectForEntityForName:@"OverallLeaderboardUser"
-                              inManagedObjectContext:context];
-            }
-            user.name = [userDict objectForKey:@"name"];
-            user.score = [userDict objectForKey:@"score"];
-            user.identifier = [userDict objectForKey:@"id"];
-            NSError *error;
-            if (![context save:&error]) {
-                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-            }
-            
         }
         [self.refreshControl endRefreshing];
     }];
@@ -109,7 +110,6 @@ static int fetchLimit = 10;
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     
     [fetchRequest setFetchBatchSize:10];
-    [fetchRequest setFetchLimit:fetchLimit];
 
     NSFetchedResultsController *theFetchedResultsController =
     [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest

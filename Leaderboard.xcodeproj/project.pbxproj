@@ -24,6 +24,7 @@
 		054CC6A61CFD5BBB00526FF8 /* MyLeaderBoardUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 054CC6A01CFD5BBB00526FF8 /* MyLeaderBoardUser.m */; };
 		054CC6A71CFD5BBB00526FF8 /* OverallLeaderboardUser+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 054CC6A21CFD5BBB00526FF8 /* OverallLeaderboardUser+CoreDataProperties.m */; };
 		054CC6A81CFD5BBB00526FF8 /* OverallLeaderboardUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 054CC6A41CFD5BBB00526FF8 /* OverallLeaderboardUser.m */; };
+		054CC6AE1CFD63AD00526FF8 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 054CC6AD1CFD63AD00526FF8 /* CoreDataHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,8 @@
 		054CC6A21CFD5BBB00526FF8 /* OverallLeaderboardUser+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OverallLeaderboardUser+CoreDataProperties.m"; sourceTree = "<group>"; };
 		054CC6A31CFD5BBB00526FF8 /* OverallLeaderboardUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverallLeaderboardUser.h; sourceTree = "<group>"; };
 		054CC6A41CFD5BBB00526FF8 /* OverallLeaderboardUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverallLeaderboardUser.m; sourceTree = "<group>"; };
+		054CC6AC1CFD63AD00526FF8 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
+		054CC6AD1CFD63AD00526FF8 /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +136,8 @@
 				050592B11CFC7C4E00F4E6C9 /* DataModel.xcdatamodeld */,
 				050592811CFC77A700F4E6C9 /* AppDelegate.h */,
 				050592821CFC77A700F4E6C9 /* AppDelegate.m */,
+				054CC6AC1CFD63AD00526FF8 /* CoreDataHelper.h */,
+				054CC6AD1CFD63AD00526FF8 /* CoreDataHelper.m */,
 				050592871CFC77A700F4E6C9 /* Main.storyboard */,
 				0505928A1CFC77A700F4E6C9 /* Assets.xcassets */,
 				0505928C1CFC77A700F4E6C9 /* LaunchScreen.storyboard */,
@@ -347,6 +352,7 @@
 				050592B91CFC7ED300F4E6C9 /* User.m in Sources */,
 				054CC6A81CFD5BBB00526FF8 /* OverallLeaderboardUser.m in Sources */,
 				050592B31CFC7C4E00F4E6C9 /* DataModel.xcdatamodeld in Sources */,
+				054CC6AE1CFD63AD00526FF8 /* CoreDataHelper.m in Sources */,
 				050592831CFC77A700F4E6C9 /* AppDelegate.m in Sources */,
 				050592801CFC77A700F4E6C9 /* main.m in Sources */,
 			);

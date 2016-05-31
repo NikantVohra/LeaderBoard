@@ -11,6 +11,7 @@
 #import "MyLeaderBoardUser.h"
 #import "AppDelegate.h"
 #import "LeaderboardService.h"
+#import "CoreDataHelper.h"
 
 @interface MyLeaderboardViewController () <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -31,19 +32,19 @@
     [self addRefreshControl];
     self.leaderboardService = [[LeaderboardService alloc] init];
     NSError *error;
-    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    self.managedObjectContext = delegate.managedObjectContext;
-    
+    self.managedObjectContext = [[CoreDataHelper sharedInstance] managedObjectContext];
+
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         exit(-1);
     }
+    [self fetchUsers];
+
 
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self fetchUsers];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,31 +61,34 @@
 
 -(void)fetchUsers{
     [self.leaderboardService fetchMyLeaderboardUsers:^(NSArray *users, NSError *error) {
-        for(NSDictionary *userDict in users) {
-            NSManagedObjectContext *context = [self managedObjectContext];
-            NSString *userId =  [userDict objectForKey:@"id"];
-            NSFetchRequest *request = [[NSFetchRequest alloc] init];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:@"MyLeaderBoardUser" inManagedObjectContext:self.managedObjectContext];
-            [request setEntity:entity];
-            [request setPredicate:[NSPredicate predicateWithFormat:@"identifier == %@", userId]];
-            NSArray *results = [self.managedObjectContext executeFetchRequest:request error:nil];
-            MyLeaderBoardUser *user;
-            if(results.count > 0) {
-                user = [results objectAtIndex:0];
+        if(!error) {
+            [[CoreDataHelper sharedInstance] deleteAllInstancesOfEntity:@"MyLeaderBoardUser"];
+            for(NSDictionary *userDict in users) {
+                NSManagedObjectContext *context = [self managedObjectContext];
+                NSString *userId =  [userDict objectForKey:@"id"];
+                NSFetchRequest *request = [[NSFetchRequest alloc] init];
+                NSEntityDescription *entity = [NSEntityDescription entityForName:@"MyLeaderBoardUser" inManagedObjectContext:self.managedObjectContext];
+                [request setEntity:entity];
+                [request setPredicate:[NSPredicate predicateWithFormat:@"identifier == %@", userId]];
+                NSArray *results = [self.managedObjectContext executeFetchRequest:request error:nil];
+                MyLeaderBoardUser *user;
+                if(results.count > 0) {
+                    user = [results objectAtIndex:0];
+                }
+                else {
+                    user = [NSEntityDescription
+                            insertNewObjectForEntityForName:@"MyLeaderBoardUser"
+                            inManagedObjectContext:context];
+                }
+                user.name = [userDict objectForKey:@"name"];
+                user.score = [userDict objectForKey:@"score"];
+                user.identifier = [userDict objectForKey:@"id"];
+                NSError *error;
+                if (![context save:&error]) {
+                    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                }
+                
             }
-            else {
-                user = [NSEntityDescription
-                        insertNewObjectForEntityForName:@"MyLeaderBoardUser"
-                        inManagedObjectContext:context];
-            }
-            user.name = [userDict objectForKey:@"name"];
-            user.score = [userDict objectForKey:@"score"];
-            user.identifier = [userDict objectForKey:@"id"];
-            NSError *error;
-            if (![context save:&error]) {
-                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-            }
-            
         }
         [self.refreshControl endRefreshing];
     }];
@@ -108,7 +112,6 @@
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     
     [fetchRequest setFetchBatchSize:10];
-    [fetchRequest setFetchLimit:10];
     
     NSFetchedResultsController *theFetchedResultsController =
     [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
@@ -165,11 +168,11 @@
     switch(type) {
             
         case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
             break;
             
         case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
             break;
             
         case NSFetchedResultsChangeUpdate:
@@ -191,11 +194,11 @@
     switch(type) {
             
         case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationNone];
             break;
             
         case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationNone];
             break;
     }
 }
