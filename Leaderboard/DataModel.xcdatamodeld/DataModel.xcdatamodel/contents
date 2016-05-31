@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
+    <entity name="MyLeaderBoardUser" representedClassName="MyLeaderBoardUser" parentEntity="User" syncable="YES"/>
+    <entity name="OverallLeaderboardUser" representedClassName="OverallLeaderboardUser" parentEntity="User" syncable="YES"/>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -7,5 +9,7 @@
     </entity>
     <elements>
         <element name="User" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="OverallLeaderboardUser" positionX="-216" positionY="252" width="128" height="45"/>
+        <element name="MyLeaderBoardUser" positionX="171" positionY="270" width="128" height="45"/>
     </elements>
 </model>

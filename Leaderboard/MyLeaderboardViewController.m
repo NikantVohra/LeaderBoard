@@ -8,7 +8,7 @@
 
 #import "MyLeaderboardViewController.h"
 #import <CoreData/CoreData.h>
-#import "User.h"
+#import "MyLeaderBoardUser.h"
 #import "AppDelegate.h"
 #import "LeaderboardService.h"
 
@@ -38,14 +38,19 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         exit(-1);
     }
-    [self fetchUsers];
 
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self fetchUsers];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 -(void)addRefreshControl {
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -54,22 +59,22 @@
 }
 
 -(void)fetchUsers{
-    [self.leaderboardService fetchTopLeaderboardUsers:^(NSArray *users, NSError *error) {
+    [self.leaderboardService fetchMyLeaderboardUsers:^(NSArray *users, NSError *error) {
         for(NSDictionary *userDict in users) {
             NSManagedObjectContext *context = [self managedObjectContext];
             NSString *userId =  [userDict objectForKey:@"id"];
             NSFetchRequest *request = [[NSFetchRequest alloc] init];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+            NSEntityDescription *entity = [NSEntityDescription entityForName:@"MyLeaderBoardUser" inManagedObjectContext:self.managedObjectContext];
             [request setEntity:entity];
             [request setPredicate:[NSPredicate predicateWithFormat:@"identifier == %@", userId]];
             NSArray *results = [self.managedObjectContext executeFetchRequest:request error:nil];
-            User *user;
+            MyLeaderBoardUser *user;
             if(results.count > 0) {
                 user = [results objectAtIndex:0];
             }
             else {
                 user = [NSEntityDescription
-                        insertNewObjectForEntityForName:@"User"
+                        insertNewObjectForEntityForName:@"MyLeaderBoardUser"
                         inManagedObjectContext:context];
             }
             user.name = [userDict objectForKey:@"name"];
@@ -95,7 +100,7 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+                                   entityForName:@"MyLeaderBoardUser" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     NSSortDescriptor *sort = [[NSSortDescriptor alloc]

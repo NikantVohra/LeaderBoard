@@ -20,6 +20,10 @@
 		050592B91CFC7ED300F4E6C9 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 050592B71CFC7ED300F4E6C9 /* User.m */; };
 		050592BC1CFC91BF00F4E6C9 /* LeaderboardService.m in Sources */ = {isa = PBXBuildFile; fileRef = 050592BB1CFC91BF00F4E6C9 /* LeaderboardService.m */; };
 		050592C61CFCA0CE00F4E6C9 /* MyLeaderboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 050592C51CFCA0CE00F4E6C9 /* MyLeaderboardViewController.m */; };
+		054CC6A51CFD5BBB00526FF8 /* MyLeaderBoardUser+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 054CC69E1CFD5BBB00526FF8 /* MyLeaderBoardUser+CoreDataProperties.m */; };
+		054CC6A61CFD5BBB00526FF8 /* MyLeaderBoardUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 054CC6A01CFD5BBB00526FF8 /* MyLeaderBoardUser.m */; };
+		054CC6A71CFD5BBB00526FF8 /* OverallLeaderboardUser+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 054CC6A21CFD5BBB00526FF8 /* OverallLeaderboardUser+CoreDataProperties.m */; };
+		054CC6A81CFD5BBB00526FF8 /* OverallLeaderboardUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 054CC6A41CFD5BBB00526FF8 /* OverallLeaderboardUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +69,14 @@
 		050592BB1CFC91BF00F4E6C9 /* LeaderboardService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderboardService.m; sourceTree = "<group>"; };
 		050592C41CFCA0CE00F4E6C9 /* MyLeaderboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLeaderboardViewController.h; sourceTree = "<group>"; };
 		050592C51CFCA0CE00F4E6C9 /* MyLeaderboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLeaderboardViewController.m; sourceTree = "<group>"; };
+		054CC69D1CFD5BBB00526FF8 /* MyLeaderBoardUser+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MyLeaderBoardUser+CoreDataProperties.h"; sourceTree = "<group>"; };
+		054CC69E1CFD5BBB00526FF8 /* MyLeaderBoardUser+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MyLeaderBoardUser+CoreDataProperties.m"; sourceTree = "<group>"; };
+		054CC69F1CFD5BBB00526FF8 /* MyLeaderBoardUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLeaderBoardUser.h; sourceTree = "<group>"; };
+		054CC6A01CFD5BBB00526FF8 /* MyLeaderBoardUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLeaderBoardUser.m; sourceTree = "<group>"; };
+		054CC6A11CFD5BBB00526FF8 /* OverallLeaderboardUser+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OverallLeaderboardUser+CoreDataProperties.h"; sourceTree = "<group>"; };
+		054CC6A21CFD5BBB00526FF8 /* OverallLeaderboardUser+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OverallLeaderboardUser+CoreDataProperties.m"; sourceTree = "<group>"; };
+		054CC6A31CFD5BBB00526FF8 /* OverallLeaderboardUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverallLeaderboardUser.h; sourceTree = "<group>"; };
+		054CC6A41CFD5BBB00526FF8 /* OverallLeaderboardUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverallLeaderboardUser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +175,14 @@
 				050592B51CFC7ED300F4E6C9 /* User+CoreDataProperties.m */,
 				050592B61CFC7ED300F4E6C9 /* User.h */,
 				050592B71CFC7ED300F4E6C9 /* User.m */,
+				054CC69D1CFD5BBB00526FF8 /* MyLeaderBoardUser+CoreDataProperties.h */,
+				054CC69E1CFD5BBB00526FF8 /* MyLeaderBoardUser+CoreDataProperties.m */,
+				054CC69F1CFD5BBB00526FF8 /* MyLeaderBoardUser.h */,
+				054CC6A01CFD5BBB00526FF8 /* MyLeaderBoardUser.m */,
+				054CC6A11CFD5BBB00526FF8 /* OverallLeaderboardUser+CoreDataProperties.h */,
+				054CC6A21CFD5BBB00526FF8 /* OverallLeaderboardUser+CoreDataProperties.m */,
+				054CC6A31CFD5BBB00526FF8 /* OverallLeaderboardUser.h */,
+				054CC6A41CFD5BBB00526FF8 /* OverallLeaderboardUser.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -317,11 +337,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				054CC6A61CFD5BBB00526FF8 /* MyLeaderBoardUser.m in Sources */,
 				050592B81CFC7ED300F4E6C9 /* User+CoreDataProperties.m in Sources */,
 				050592861CFC77A700F4E6C9 /* OverallLeaderboardViewController.m in Sources */,
+				054CC6A71CFD5BBB00526FF8 /* OverallLeaderboardUser+CoreDataProperties.m in Sources */,
+				054CC6A51CFD5BBB00526FF8 /* MyLeaderBoardUser+CoreDataProperties.m in Sources */,
 				050592C61CFCA0CE00F4E6C9 /* MyLeaderboardViewController.m in Sources */,
 				050592BC1CFC91BF00F4E6C9 /* LeaderboardService.m in Sources */,
 				050592B91CFC7ED300F4E6C9 /* User.m in Sources */,
+				054CC6A81CFD5BBB00526FF8 /* OverallLeaderboardUser.m in Sources */,
 				050592B31CFC7C4E00F4E6C9 /* DataModel.xcdatamodeld in Sources */,
 				050592831CFC77A700F4E6C9 /* AppDelegate.m in Sources */,
 				050592801CFC77A700F4E6C9 /* main.m in Sources */,

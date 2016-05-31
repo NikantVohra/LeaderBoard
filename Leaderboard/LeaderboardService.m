@@ -9,10 +9,10 @@
 #import "LeaderboardService.h"
 @implementation LeaderboardService
 
-NSString *const apiURL = @"http://127.0.0.1:8081/";
+NSString *const apiURL = @"http://127.0.0.1:8081/leaderboard";
 
 -(void)fetchTopLeaderboardUsers:(void(^)(NSArray *users, NSError *error))completion {
-    [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:apiURL] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/overall", apiURL]] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if(!error) {
             NSError* conversionError;
             
@@ -36,7 +36,7 @@ NSString *const apiURL = @"http://127.0.0.1:8081/";
 }
 
 -(void)fetchMyLeaderboardUsers:(void(^)(NSArray *users, NSError *error))completion{
-    [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:apiURL] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/my", apiURL]] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if(!error) {
             NSError* conversionError;
             

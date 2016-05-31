@@ -8,7 +8,7 @@
 
 #import "OverallLeaderboardViewController.h"
 #import <CoreData/CoreData.h>
-#import "User.h"
+#import "OverallLeaderboardUser.h"
 #import "AppDelegate.h"
 #import "LeaderboardService.h"
 
@@ -18,9 +18,12 @@
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) LeaderboardService *leaderboardService;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+
 @end
 
 @implementation OverallLeaderboardViewController
+
+static int fetchLimit = 10;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,6 +42,16 @@
     [self fetchUsers];
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self fetchUsers];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 
 -(void)addRefreshControl {
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -52,17 +65,17 @@
             NSManagedObjectContext *context = [self managedObjectContext];
             NSString *userId =  [userDict objectForKey:@"id"];
             NSFetchRequest *request = [[NSFetchRequest alloc] init];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+            NSEntityDescription *entity = [NSEntityDescription entityForName:@"OverallLeaderboardUser" inManagedObjectContext:self.managedObjectContext];
             [request setEntity:entity];
             [request setPredicate:[NSPredicate predicateWithFormat:@"identifier == %@", userId]];
             NSArray *results = [self.managedObjectContext executeFetchRequest:request error:nil];
-            User *user;
+            OverallLeaderboardUser *user;
             if(results.count > 0) {
                 user = [results objectAtIndex:0];
             }
             else {
                 user = [NSEntityDescription
-                              insertNewObjectForEntityForName:@"User"
+                              insertNewObjectForEntityForName:@"OverallLeaderboardUser"
                               inManagedObjectContext:context];
             }
             user.name = [userDict objectForKey:@"name"];
@@ -88,7 +101,7 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+                                   entityForName:@"OverallLeaderboardUser" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     NSSortDescriptor *sort = [[NSSortDescriptor alloc]
@@ -96,7 +109,7 @@
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     
     [fetchRequest setFetchBatchSize:10];
-    [fetchRequest setFetchLimit:10];
+    [fetchRequest setFetchLimit:fetchLimit];
 
     NSFetchedResultsController *theFetchedResultsController =
     [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
@@ -107,17 +120,19 @@
     return _fetchedResultsController;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     id  sectionInfo =
     [[_fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
+  //  if([sectionInfo numberOfObjects] < fetchLimit){
+        return [sectionInfo numberOfObjects];
+//    }
+//    else {
+//        return fetchLimit;
+//    }
 }
+
 
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
