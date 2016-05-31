@@ -11,5 +11,6 @@
 @interface LeaderboardService : NSObject
 
 -(void)fetchTopLeaderboardUsers:(void(^)(NSArray *users, NSError *error))completion;
+-(void)fetchMyLeaderboardUsers:(void(^)(NSArray *users, NSError *error))completion;
 
 @end

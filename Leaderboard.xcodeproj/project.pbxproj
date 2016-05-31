@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		050592801CFC77A700F4E6C9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0505927F1CFC77A700F4E6C9 /* main.m */; };
 		050592831CFC77A700F4E6C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 050592821CFC77A700F4E6C9 /* AppDelegate.m */; };
-		050592861CFC77A700F4E6C9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 050592851CFC77A700F4E6C9 /* ViewController.m */; };
+		050592861CFC77A700F4E6C9 /* OverallLeaderboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 050592851CFC77A700F4E6C9 /* OverallLeaderboardViewController.m */; };
 		050592891CFC77A700F4E6C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 050592871CFC77A700F4E6C9 /* Main.storyboard */; };
 		0505928B1CFC77A700F4E6C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0505928A1CFC77A700F4E6C9 /* Assets.xcassets */; };
 		0505928E1CFC77A700F4E6C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0505928C1CFC77A700F4E6C9 /* LaunchScreen.storyboard */; };
@@ -19,6 +19,7 @@
 		050592B81CFC7ED300F4E6C9 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 050592B51CFC7ED300F4E6C9 /* User+CoreDataProperties.m */; };
 		050592B91CFC7ED300F4E6C9 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 050592B71CFC7ED300F4E6C9 /* User.m */; };
 		050592BC1CFC91BF00F4E6C9 /* LeaderboardService.m in Sources */ = {isa = PBXBuildFile; fileRef = 050592BB1CFC91BF00F4E6C9 /* LeaderboardService.m */; };
+		050592C61CFCA0CE00F4E6C9 /* MyLeaderboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 050592C51CFCA0CE00F4E6C9 /* MyLeaderboardViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,8 +44,8 @@
 		0505927F1CFC77A700F4E6C9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		050592811CFC77A700F4E6C9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		050592821CFC77A700F4E6C9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		050592841CFC77A700F4E6C9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		050592851CFC77A700F4E6C9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		050592841CFC77A700F4E6C9 /* OverallLeaderboardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OverallLeaderboardViewController.h; sourceTree = "<group>"; };
+		050592851CFC77A700F4E6C9 /* OverallLeaderboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OverallLeaderboardViewController.m; sourceTree = "<group>"; };
 		050592881CFC77A700F4E6C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0505928A1CFC77A700F4E6C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0505928D1CFC77A700F4E6C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -62,6 +63,8 @@
 		050592B71CFC7ED300F4E6C9 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		050592BA1CFC91BF00F4E6C9 /* LeaderboardService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderboardService.h; sourceTree = "<group>"; };
 		050592BB1CFC91BF00F4E6C9 /* LeaderboardService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderboardService.m; sourceTree = "<group>"; };
+		050592C41CFCA0CE00F4E6C9 /* MyLeaderboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLeaderboardViewController.h; sourceTree = "<group>"; };
+		050592C51CFCA0CE00F4E6C9 /* MyLeaderboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLeaderboardViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,17 +115,12 @@
 		0505927D1CFC77A700F4E6C9 /* Leaderboard */ = {
 			isa = PBXGroup;
 			children = (
+				050592C01CFC9D2900F4E6C9 /* ViewControllers */,
+				050592BE1CFC9D1500F4E6C9 /* Services */,
+				050592BD1CFC9D0A00F4E6C9 /* Models */,
 				050592B11CFC7C4E00F4E6C9 /* DataModel.xcdatamodeld */,
-				050592B41CFC7ED300F4E6C9 /* User+CoreDataProperties.h */,
-				050592B51CFC7ED300F4E6C9 /* User+CoreDataProperties.m */,
-				050592B61CFC7ED300F4E6C9 /* User.h */,
-				050592B71CFC7ED300F4E6C9 /* User.m */,
 				050592811CFC77A700F4E6C9 /* AppDelegate.h */,
 				050592821CFC77A700F4E6C9 /* AppDelegate.m */,
-				050592841CFC77A700F4E6C9 /* ViewController.h */,
-				050592851CFC77A700F4E6C9 /* ViewController.m */,
-				050592BA1CFC91BF00F4E6C9 /* LeaderboardService.h */,
-				050592BB1CFC91BF00F4E6C9 /* LeaderboardService.m */,
 				050592871CFC77A700F4E6C9 /* Main.storyboard */,
 				0505928A1CFC77A700F4E6C9 /* Assets.xcassets */,
 				0505928C1CFC77A700F4E6C9 /* LaunchScreen.storyboard */,
@@ -156,6 +154,37 @@
 				050592A51CFC77A700F4E6C9 /* Info.plist */,
 			);
 			path = LeaderboardUITests;
+			sourceTree = "<group>";
+		};
+		050592BD1CFC9D0A00F4E6C9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				050592B41CFC7ED300F4E6C9 /* User+CoreDataProperties.h */,
+				050592B51CFC7ED300F4E6C9 /* User+CoreDataProperties.m */,
+				050592B61CFC7ED300F4E6C9 /* User.h */,
+				050592B71CFC7ED300F4E6C9 /* User.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		050592BE1CFC9D1500F4E6C9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				050592BA1CFC91BF00F4E6C9 /* LeaderboardService.h */,
+				050592BB1CFC91BF00F4E6C9 /* LeaderboardService.m */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		050592C01CFC9D2900F4E6C9 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				050592841CFC77A700F4E6C9 /* OverallLeaderboardViewController.h */,
+				050592851CFC77A700F4E6C9 /* OverallLeaderboardViewController.m */,
+				050592C41CFCA0CE00F4E6C9 /* MyLeaderboardViewController.h */,
+				050592C51CFCA0CE00F4E6C9 /* MyLeaderboardViewController.m */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,7 +318,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				050592B81CFC7ED300F4E6C9 /* User+CoreDataProperties.m in Sources */,
-				050592861CFC77A700F4E6C9 /* ViewController.m in Sources */,
+				050592861CFC77A700F4E6C9 /* OverallLeaderboardViewController.m in Sources */,
+				050592C61CFCA0CE00F4E6C9 /* MyLeaderboardViewController.m in Sources */,
 				050592BC1CFC91BF00F4E6C9 /* LeaderboardService.m in Sources */,
 				050592B91CFC7ED300F4E6C9 /* User.m in Sources */,
 				050592B31CFC7C4E00F4E6C9 /* DataModel.xcdatamodeld in Sources */,
@@ -520,6 +550,7 @@
 				050592AA1CFC77A700F4E6C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		050592AB1CFC77A700F4E6C9 /* Build configuration list for PBXNativeTarget "LeaderboardTests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +559,7 @@
 				050592AD1CFC77A700F4E6C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		050592AE1CFC77A700F4E6C9 /* Build configuration list for PBXNativeTarget "LeaderboardUITests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +568,7 @@
 				050592B01CFC77A700F4E6C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

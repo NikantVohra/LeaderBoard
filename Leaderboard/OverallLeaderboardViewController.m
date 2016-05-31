@@ -6,13 +6,13 @@
 //  Copyright © 2016 Vohra, Nikant. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "OverallLeaderboardViewController.h"
 #import <CoreData/CoreData.h>
 #import "User.h"
 #import "AppDelegate.h"
 #import "LeaderboardService.h"
 
-@interface ViewController () <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@interface OverallLeaderboardViewController () <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
@@ -20,7 +20,7 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 
-@implementation ViewController
+@implementation OverallLeaderboardViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -96,7 +96,7 @@
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     
     [fetchRequest setFetchBatchSize:10];
-    [fetchRequest setFetchLimit:2];
+    [fetchRequest setFetchLimit:10];
 
     NSFetchedResultsController *theFetchedResultsController =
     [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest

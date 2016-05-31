@@ -26,15 +26,39 @@ NSString *const apiURL = @"http://127.0.0.1:8081/";
             }
             
         }
-        
         else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 completion(nil, error);
             });
 
         }
-    }]resume ];
-    
+    }]resume];
 }
+
+-(void)fetchMyLeaderboardUsers:(void(^)(NSArray *users, NSError *error))completion{
+    [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:apiURL] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if(!error) {
+            NSError* conversionError;
+            
+            NSArray* json = [NSJSONSerialization JSONObjectWithData:data
+                                                            options:kNilOptions
+                                                              error:&conversionError];
+            if(!conversionError) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completion(json, nil);
+                });
+            }
+            
+        }
+        else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(nil, error);
+            });
+            
+        }
+    }]resume];
+}
+
+
 
 @end
