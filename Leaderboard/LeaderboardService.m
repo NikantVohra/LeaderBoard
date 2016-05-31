@@ -9,7 +9,7 @@
 #import "LeaderboardService.h"
 @implementation LeaderboardService
 
-NSString *const apiURL = @"http://127.0.0.1:8081/leaderboard";
+NSString *const apiURL = @"http://nodejs-dummyservel.rhcloud.com/leaderboard";
 
 -(void)fetchTopLeaderboardUsers:(void(^)(NSArray *users, NSError *error))completion {
     [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/overall", apiURL]] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
